@@ -4,7 +4,7 @@ using ll = long long;
 
 int main() {
     string s; cin >> s;
-    int ans = 1<<5;
+    int ans = 100000;
     int count = 0;
 
     char cur = '0';
