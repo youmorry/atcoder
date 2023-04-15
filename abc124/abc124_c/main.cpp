@@ -2,27 +2,23 @@
 using namespace std;
 using ll = long long;
 
+string patern (string s, int len) {
+    string res = s; 
+    for (int i = 1; i < len; i++) {
+        if (res.back() == '1') res += "0";
+        else res += "1";
+    }
+    return res;
+}
+
 int main() {
     string s; cin >> s;
+    bitset<100000> target(s);
+    int len = s.length();
+
     int ans = 100000;
-    int count = 0;
-
-    char cur = '0';
-    for (int i = 0; i < s.length(); i++) {
-        if (cur != s[i]) ++count;
-        if (cur == '0') cur = '1';
-        else cur = '0';
-    }
-    ans = min(ans, count);
-
-    count = 0;
-    cur = '1';
-    for (int i = 0; i < s.length(); i++) {
-        if (cur != s[i]) ++count;
-        if (cur == '0') cur = '1';
-        else cur = '0';
-    }
-    ans = min(ans, count);
+    ans = min(ans, (int)(target ^ bitset<100000>(patern("1", len))).count());
+    ans = min(ans, (int)(target ^ bitset<100000>(patern("0", len))).count());
 
     cout << ans << endl;
     return 0;
