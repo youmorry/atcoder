@@ -41,3 +41,4 @@ a.out
 **/test
 .vscode
 .devcontainer
+test.cpp
