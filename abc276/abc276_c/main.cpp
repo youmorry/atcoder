@@ -7,10 +7,8 @@ int main() {
     vector<int> p(n);
     for (auto &i : p) cin >> i;
 
-    while (prev_permutation(p.begin(), p.end())) {
-        for (auto i : p) cout << i << " "; cout << endl;
-        break;
-    }
+    prev_permutation(p.begin(), p.end());
+    for (auto i : p) cout << i << " "; cout << endl;
 
     return 0;
 }
