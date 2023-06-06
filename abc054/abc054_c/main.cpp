@@ -2,18 +2,21 @@
 using namespace std;
 using ll = long long;
 
+int n, m;
 map<int, vector<int>> g;
+int ans = 0;
 
-void trace(vector<int> vec, set<int> &se) {
-    for (int i = 0; i < vec.size(); i++) {
-        if (se.find(vec[i]) != se.end()) continue; 
-        se.insert(vec[i]);
-        trace(g[vec[i]], se);
+void trace(int v, set<int> visited) {
+    visited.insert(v);
+    if (visited.size() == n) ++ans;
+    
+    for (auto i : g[v]) {
+        if (visited.find(i) != visited.end()) continue;
+        trace(i, visited);
     }
 }
 
 int main() {
-    int n, m;
     cin >> n >> m;
     for (int i = 0; i < m; i++) {
         int a, b;
@@ -23,13 +26,8 @@ int main() {
         g[b].push_back(a);
     }
 
-    int ans = 0;
-    for (int i = 0; i < g[0].size(); i++) {
-        set<int> se;
-        se.insert(0);
-        trace(g[g[0][i]], se);
-        if (se.size() == n) ++ans;
-    }
+    set<int> visited;
+    trace(0, visited);
 
     cout << ans << endl;
     return 0;
