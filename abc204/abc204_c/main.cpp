@@ -4,10 +4,10 @@ using ll = long long;
 
 using Graph = vector<vector<int>>;
 
-vector<int> finished;
+vector<int> visited;
 void dfs(const Graph &g, int v) {
-    if (finished[v]) return;
-    finished[v] = true;
+    if (visited[v]) return;
+    visited[v] = true;
     for (auto nv : g[v]) dfs(g, nv);
 }
 
@@ -25,9 +25,9 @@ int main() {
 
     int ans = 0;
     for (int i = 0; i < n; i++) {
-        finished.assign(n, false);
+        visited.assign(n, false);
         dfs(g, i);
-        for (auto i : finished) if (i) ++ans;
+        for (auto i : visited) if (i) ++ans;
     }
 
     cout << ans << endl;
