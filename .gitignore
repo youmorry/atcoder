@@ -42,3 +42,4 @@ a.out
 .vscode
 .devcontainer
 test.cpp
+*.code-workspace
